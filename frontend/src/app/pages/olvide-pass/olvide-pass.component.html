@@ -1,0 +1,47 @@
+<!-- Titulo -->
+<h1 class="text-sky-600 font-bold text-6xl capitalize">Recupera tu acceso y no pierdas tus 
+    <span class="text-slate-700" >proyectos</span>
+</h1>
+<!-- Formulario -->
+@if(alerta){
+    <!-- Alertas -->
+    <app-alerta [alerta]="alerta"></app-alerta>
+}
+<form 
+    (ngSubmit)="onSubmit()"
+    #formOlvidePass = "ngForm"
+    class="my-10 bg-white shadow rounded-lg p-10" 
+>
+   
+    <!-- Campo Email -->
+    <div class="my-5">
+        <label 
+            for="email" 
+            class="uppercase text-gray-600 block text-xl font-bold" >Email
+        </label>
+        <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            placeholder="Email de Registro" 
+            class="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+            [(ngModel)]="userEmail"
+            
+        />
+    </div>
+    <!-- Btn Submit -->
+    <input 
+        type="submit" 
+        value="Enviar Instrucciones" 
+        class="bg-sky-700 w-full py-3 mb-5 text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-800 transition-colors"
+    />
+</form>
+<!-- Navegacion -->
+<nav class="lg:flex lg:justify-between">
+    <p class="block text-center my-5 text-slate-500 uppercase text-sm" >
+        ¿Ya tienes una cuenta? <a [routerLink]="['/auth/login']" routerLinkActive="bg-sky-800" >Inicia Sesión</a> 
+    </p>
+    <p class="block text-center my-5 text-slate-500 uppercase text-sm" >
+        ¿No tienes una cuenta? <a [routerLink]="['/auth/registrar']" routerLinkActive="bg-sky-800" >Registrate</a> 
+    </p>
+</nav>

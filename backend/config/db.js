@@ -1,16 +1,14 @@
-import mongoose from 'mogoose';
+import mongoose from 'mongoose';
 
 const conectarDB = async () => {
     try{
-        const conection = await mongoose.connect('mongodb+srv://root:root@cluster0.mdy5jyq.mongodb.net/?retryWrites=true&w=majority',{
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        let url = `${conection.conection.host}:${conection.conection.port}`;
-        console.log(`MongoDb Conectado en: ${url}`)
+        const conection = await mongoose.connect(process.env.MONGO_URI);
+
+        let url = `${conection.connection.host}:${conection.connection.port}`;
+        console.log(`MongoDB Conectado en: ${url}`)
     }catch(error){
         console.warn(`error: ${error}`);
-        procces.exit(1); //para forzar a que el proceso termine
+        process.exit(1); //para forzar a que el proceso termine
     }
 }
 export default conectarDB;

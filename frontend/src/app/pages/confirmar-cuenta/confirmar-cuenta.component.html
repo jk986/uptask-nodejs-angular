@@ -1,0 +1,12 @@
+<!-- Titulo -->
+<h1 class="text-sky-600 font-bold text-6xl capitalize">Confirma tu cuenta y comienza a crear tus 
+    <span class="text-slate-700" >proyectos</span>
+</h1>
+<div class="mt-20 md:mt-10 shadow-lg px-5 py-10 rounded-xl bg-white">
+    @if (alerta.msg!=="") {
+        <app-alerta [alerta]="alerta"></app-alerta>
+        <p class="block text-center my-5 text-slate-500 uppercase text-sm" >
+            <a [routerLink]="['/auth/login']" routerLinkActive="bg-sky-800" >Inicia Sesión</a> 
+        </p>
+    }
+</div>

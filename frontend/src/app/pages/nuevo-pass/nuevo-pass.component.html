@@ -1,0 +1,47 @@
+<!-- Titulo -->
+<h1 class="text-sky-600 font-bold text-6xl capitalize">Reestablece tu password y no pierdas acceso a tus 
+    <span class="text-slate-700" >proyectos</span>
+</h1>
+@if(alerta.msg != "" && !showForm){
+    <app-alerta [alerta]="alerta"></app-alerta>
+}
+
+@if(!showForm){
+    <!-- Formulario -->
+    <form
+        (ngSubmit)="onSubmit()"
+        #olvidePassForm = "ngForm"
+        class="my-10 bg-white shadow rounded-lg p-10"
+    >
+        <!-- Campo Password -->
+        <div class="my-5">
+            <label 
+                for="pass" 
+                class="uppercase text-gray-600 block text-xl font-bold" >Nuevo Password
+            </label>
+            <input 
+                type="password" 
+                name="pass" 
+                id="pass" 
+                placeholder="Escribe tu nuevo password" 
+                class="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                [(ngModel)]="pass" 
+            />
+        </div>
+        <!-- Btn Submit -->
+        <input 
+            type="submit" 
+            value="Guardar Nuevo Password" 
+            class="bg-sky-700 w-full py-3 mb-5 text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-800 transition-colors"
+        />
+    </form>
+    @if(showLink){
+        <p class="block text-center my-5 text-slate-500 uppercase text-sm" >
+            <a [routerLink]="['/auth/login']" routerLinkActive="bg-sky-800" >Inicia Sesión</a> 
+        </p>
+    }
+}
+
+@if(showForm){
+    <app-alerta [alerta]="alerta"></app-alerta>
+}

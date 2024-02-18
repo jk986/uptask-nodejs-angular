@@ -1,0 +1,90 @@
+<!-- Titulo -->
+<h1 class="text-sky-600 font-bold text-6xl capitalize">Crea tu cuenta y administra tus 
+    <span class="text-slate-700" >proyectos</span>
+</h1>
+<!-- Formulario -->
+    <!-- Alertas -->
+    @if (alerta.msg!='') {
+        <app-alerta [alerta]="alerta"></app-alerta>
+    }
+<form 
+    (ngSubmit)="onSubmit()"
+    class="my-10 bg-white shadow rounded-lg p-10" 
+    #formRegistro="ngForm"
+>
+    <!-- Campo Nombre -->
+    <div class="my-5">
+        <label 
+            for="nombre" 
+            class="uppercase text-gray-600 block text-xl font-bold" >Nombre
+        </label>
+        <input 
+            type="text" 
+            name="nombre" 
+            id="nombre" 
+            placeholder="Tu Nombre" 
+            class="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+            [(ngModel)]="modelRegistro.nombre"
+        />
+    </div>
+    <!-- Campo Email -->
+    <div class="my-5">
+        <label 
+            for="email" 
+            class="uppercase text-gray-600 block text-xl font-bold" >Email
+        </label>
+        <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            placeholder="Email de Registro" 
+            class="w-full mt-3 p-3 border rounded-xl bg-gray-50" 
+            [(ngModel)]="modelRegistro.email"
+        />
+    </div>
+    <!-- Campo Password -->
+    <div class="my-5">
+        <label 
+            for="pass" 
+            class="uppercase text-gray-600 block text-xl font-bold" >Password
+        </label>
+        <input 
+            type="password" 
+            name="pass" 
+            id="pass" 
+            placeholder="Password minimo de 6 caracteres" 
+            class="w-full mt-3 p-3 border rounded-xl bg-gray-50" 
+            [(ngModel)]="modelRegistro.pass"
+        />
+    </div>
+    <!-- Campo repetir password -->
+    <div class="my-5">
+        <label 
+            for="repeatPass" 
+            class="uppercase text-gray-600 block text-xl font-bold" >Repetir Password
+        </label>
+        <input 
+            type="password" 
+            name="repeatPass" 
+            id="repeatPass" 
+            placeholder="Repetir Password" 
+            class="w-full mt-3 p-3 border rounded-xl bg-gray-50" 
+            [(ngModel)]="modelRegistro.repeatPass"
+        />
+    </div>
+    <!-- Btn Submit -->
+    <input 
+        type="submit" 
+        value="Crear Cuenta" 
+        class="bg-sky-700 w-full py-3 mb-5 text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-800 transition-colors"
+    />
+</form>
+<!-- Navegacion -->
+<nav class="lg:flex lg:justify-between">
+    <p class="block text-center my-5 text-slate-500 uppercase text-sm" >
+        ¿Ya tienes una cuenta? <a [routerLink]="['/auth/login']" routerLinkActive="bg-sky-800" >Inicia Sesión</a> 
+    </p>
+    <p class="block text-center my-5 text-slate-500 uppercase text-sm" >
+        <a [routerLink]="['/auth/olvide-password']" routerLinkActive="bg-sky-800" >Olvide mi password</a> 
+    </p>
+</nav>

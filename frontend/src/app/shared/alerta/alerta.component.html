@@ -1,0 +1,9 @@
+<div 
+    [ngClass]="
+        {
+            'bg-gradient-to-br from-red-400 to-red-600':alerta.error === true,
+            'bg-gradient-to-r from-sky-400 to-sky-600':alerta.error === false,
+            'text-center p-3 rounded-xl uppercase text-white font-bold text-sm my-10':true
+        }" 
+    >{{alerta.msg}}</div>
+<!-- <div class="bg-gradient-to-r from-red-400 to-red-600" >{{mensaje.msg}}</div> -->
