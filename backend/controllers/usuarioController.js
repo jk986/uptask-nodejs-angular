@@ -8,27 +8,29 @@ import { emailResgistro,emailOlvidePassw } from "../helpers/email.js";
 */
 const registrar = async (req,res)=>{
     // evitar registros duplicados
-    const { email } = req.body; // extraer email
+    const { email,pass } = req.body; // extraer email
     const existeUsuario = await Usuario.findOne({email}); // --> || {email:email} encontrar el primero que coincida con el email
-    if(existeUsuario){
-        const error =  new Error('Usuario Registrado');
-        return res.status(400).json({msg:error.message});
-    }
     try {
-        const usuario = new Usuario(req.body); // crear un nuevo objeto de tipo usuario usando el modelo
-        usuario.token = generarId();
-        const usuarioAlmacenado = await usuario.save(); //para almacenar el objeto en la base de datos
-        //res.json({usuarioAlmacenado});
-        // Enviar el email de confirmación
-        emailResgistro({
-            email:usuario.email,
-            nombre:usuario.nombre,
-            token: usuario.token
-        });
-        res.json({msg:"Usuario Creado Correctamente, Revisa tu Email para Confirmar tu cuenta"});
-        //console.log(usuarioAlmacenado);
+        if(existeUsuario){
+            const error =  new Error('El Usuario Ya Esta Registrado');
+            return res.status(400).json({msg:error.message});
+        }else{
+
+            const usuario = new Usuario(req.body); // crear un nuevo objeto de tipo usuario usando el modelo
+            usuario.token = generarId();
+            const usuarioAlmacenado = await usuario.save(); //para almacenar el objeto en la base de datos
+            //res.json({usuarioAlmacenado});
+            // Enviar el email de confirmación
+            emailResgistro({
+                email:usuario.email,
+                nombre:usuario.nombre,
+                token: usuario.token
+            });
+            res.json({msg:"Usuario Creado Correctamente, Revisa tu Email para Confirmar tu cuenta"});
+            //console.log(usuarioAlmacenado);
+        }
     } catch (error) {
-        const erro = new Error("El correo ya existe")
+        const erro = new Error("Faltan Datos")
         return res.status(404).json({msg:erro.message});
         console.log(error);
     }
